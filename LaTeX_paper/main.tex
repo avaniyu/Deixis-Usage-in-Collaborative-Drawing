@@ -5,16 +5,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 
-\title{Avoiding Multicast Acknowledgement Explosions in Multicast File Distribution Protocol}
+\title{Designing Deixis Usage in Real-time Collaborative Drawing}
 \author{
-        \textsc{Gerald Q. Maguire Jr.}
+        \textsc{Jiayao Yu}
             \qquad
-        \textsc{Mark T. Smith}
+        \textsc{Yumin Hong}
         \mbox{}\\
         \normalsize
-            \texttt{maguire}
+            \texttt{jiayaoy}
         \textbar{}
-            \texttt{msmith}
+            \texttt{yumin}
         \normalsize
             \texttt{@kth.se}
 }
@@ -121,9 +121,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewcommand{\headrulewidth}{0pt}
-\lhead{II2202, Fall 2016, Period 1-2}
+\lhead{II2202, Fall 2017, Period 1-2}
 %% or \lhead{II2202, Fall 2016, Period 1}
-\chead{Draft project report}
+\chead{Final project report}
 \rhead{\date{\today}}
 
 \makeatletter
@@ -139,23 +139,27 @@
 \begin{abstract}
 \label{sec:abstract}
 
-Your abstract here.
+Humans are used to using deixis in face-to-face collaborations during the evolution over thousands of years, to facilitate communication by shortening and simplifying dialogue. However, in geographically separated Computer-Supported Collaborative Work (CSCW), it is awkward to use deixis due to lack of contextual information. In this paper, we place our focus on real-time collaborative drawing, analyzed deixis usage in face-to-face collaboration and CSCW respectively based on our field experiment and statistical modeling. In the end we propose some interaction patterns to optimize deixis usage in real-time collaborative drawing, with scalability to general CSCW groupware designs. 
+\\
+\\
+\textbf{Keywords}: deixis; collaborative drawing; CSCW; interaction design.
 
 \end{abstract}
+
 %%\clearpage
 
 \selectlanguage{english}
 \tableofcontents
 
-\section*{List of Acronyms and Abbreviations}
-\label{list-of-acronyms-and-abbreviations}
+% \section*{List of Acronyms and Abbreviations}
+% \label{list-of-acronyms-and-abbreviations}
 
-This document requires readers to be familiar with terms and concepts described in \mbox{RFC~1235} \cite{john_ioannidis_coherent_1991}. For clarity we summarize some of these terms and give a short description of them before presenting them in next sections.
+% This document requires readers to be familiar with terms and concepts described in \mbox{RFC~1235} \cite{john_ioannidis_coherent_1991}. For clarity we summarize some of these terms and give a short description of them before presenting them in next sections.
 
-\begin{basedescript}{\desclabelstyle{\pushlabel}\desclabelwidth{10em}}
-\item[IPv4]					Internet Protocol version 4 (RFC~791 \cite{postel_internet_1981})
-\item[IPv6]					Internet Protocol version 6 (RFC~2460 \cite{deering_internet_1998})
-\end{basedescript}
+% \begin{basedescript}{\desclabelstyle{\pushlabel}\desclabelwidth{10em}}
+% \item[IPv4]					Internet Protocol version 4 (RFC~791 \cite{postel_internet_1981})
+% \item[IPv6]					Internet Protocol version 6 (RFC~2460 \cite{deering_internet_1998})
+% \end{basedescript}
 
 
 \clearpage
@@ -164,28 +168,45 @@ This document requires readers to be familiar with terms and concepts described 
 %% Longer problem statement
 %% General introduction to the area
 
-It was conjectured in \cite{john_ioannidis_coherent_1991} that multicasting
-could provide gains by \ldots.
+% It was conjectured in \cite{john_ioannidis_coherent_1991} that multicasting
+% could provide gains by \ldots.
 
-See also \cite{a_new_synchronization_protocol_for_sqlite_databases},
-the paper \cite{anand_kannan_n-ary_2012}, 
-and the book \cite{brent_s._baxter_standard_1982}.
+% See also \cite{a_new_synchronization_protocol_for_sqlite_databases},
+% the paper \cite{anand_kannan_n-ary_2012}, 
+% and the book \cite{brent_s._baxter_standard_1982}.
 
-\subsection{Theoretical framework/literature study}
-\label{sect:framework}
+In natural face-to-face collaborations, collaborators mutually perceive information not only from explicit resulting expressions on shared media, such as writing and drawing on paper, but also from implicit accompanying indications through the collaboration process, such as facial expressions and hand gestures.Those indications help collaborators understand each other, improving collaboration quality and efficiency.   
+
+When collaborators refer to an object on their shared media, they often use deixis to indicate their reference. Deixis is the most common instance of above-mentioned accompanying indications, it is widely used in face-to-face collaborations, while its semantic meaning is strongly dependent on situated context, which are often missing in Computer-Supported Collaborative Work (CSCW). Proper deixis usage in CSCW can help collaborators gain contextual information and facilitate their mutual communications. However, there are insufficient interaction designs for CSCW shared space groupwares to empower collaborators to use deixis as freely as face-to-face collaborations. Though there are different research frameworks on deixis usage, we still can sense the gap between theoretical research and industrial practices, especially for real-time collaborative drawing groupware designs.
+
+\subsection{Literature study}
+\label{sect:literature}
 
 xxxxx xxxx xxxx 
 
 \subsection{Research questions, hypotheses}
 \label{sect:questions}
 
-xxxxx xxxx xxxx 
+Our overall research aims to find out where and why are the differences of deixis usage happen in face-to-face collaboration and CSCW two setups, then to know how to address the deficiency in CSCW caused by differences with the counterparts in face-to-face collaboration via interaction design. We assumed collaborators have different needs to use deixis in two setups in terms of expression purpose and significance, and they have different ways to use deixis in two setups even for the same expression purpose. Based on that, we scoped our research questions as 1) how are the differences on the needs of deixis usage in face-to-face collaboration and CSCW, in terms of expression purpose and significance, 2) how do collaborators express deixis differently in two setups, and 3) how is the current situation that CSCW support deixis usage for collaborators and what could be improved. 
 
-
-\section{Method(s)}
+\section{Methods}
 \label{sec:method}
 
-xxxxx xxxx xxxx 
+\subsection{Collaborative drawing field experiment}
+\label{sect:collaborative}
+We started off a user study to investigate where are differences and why do they happen. To yield ecologically valid result, we conducted our user study in field experiment manner. Following a classical user study pipeline, we setup realistic test stage to simulate a professional work environment, found appropriate test subjects, asked them to sign consent forms with us to allow our video-recording, instructed them tasks one by one, had them freely task without our extra interference, interviewed them right after field experiment, then did instant data analysis via affinity diagram between we two researchers, encoded video-recorded data, and analyzed statistically in the end.
+
+\textit{Test environment setup}
+
+\textit{Participants recruitment}
+
+\textit{User task design}
+
+\textit{}
+
+\subsection{Groupware interaction design}
+\label{sect:groupware}
+After user study analysis, we started thinking what could be improved for the deficiency in CSCW caused by the deixis usage differences with face-to-face communication.
 
 \section{Results and Analysis}
 \label{sec:results}
@@ -200,7 +221,7 @@ xxxxx xxxx xxxx
 %%\bibliographystyle{IEEEtran}
 \bibliographystyle{myIEEEtran}
 \appendix
-\section{Insensible Approximation}
+\section{User Study Tasks}
 
 Note that the Appendix or Appendices are Optional.
 
