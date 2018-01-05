@@ -1,0 +1,82 @@
+Task no.,Action Mode,Deixis Reference,Deixis Role
+Task1,Select,Object,Coordinate with Action
+Task1,Move,Object,Express Idea
+Task1,Move,Object,Express Idea
+Task1,Point specifically,Position,Express Idea
+Task1,Move,Object,Seek Confirmation
+Task1,Move,Object,Coordinate with Action
+Task1,Point specifically,Position,Coordinate with Action
+Task1,Move,Object,Coordinate with Action
+Task1,Observe,Event,Express Idea
+Task1,Describe using gesture,Object,Express Idea
+Task1,Move,Object,Coordinate with Action
+Task1,Move,Object,Express Idea
+Task1,Move,Object,Coordinate with Action
+Task1,Move,Position,Coordinate with Action
+Task1,Move,Object,Express Idea
+Task1,Move,Object,Express Idea
+Task1,Point specifically,Object,Express Idea
+Task1,Observe,Event,Seek Confirmation
+Task1,Observe,Object,Reflection
+Task2,Describe using gesture,Scale,Express Idea
+Task2,Describe using gesture,Position,Express Idea
+Task2,Point specifically,Position,Express Idea
+Task2,Describe using gesture,Position,Seek Confirmation
+Task2,Point specifically,Position,Seek Confirmation
+Task2,Draw,Scale,Coordinate with Action
+Task2,Draw,Object,Coordinate with Action
+Task2,Point generally,Position,Seek Confirmation
+Task2,Point specifically,Position,Express Idea
+Task2,Point generally,Position,Reflection
+Task2,Point generally,Position,Seek Confirmation
+Task2,Observe,Scale,Reflection
+Task2,Describe using gesture,Scale,Reflection
+Task2,Point specifically,Position,Express Idea
+Task2,Point specifically,Position,Seek Confirmation
+Task2,Point specifically,Position,Express Idea
+Task2,Describe using gesture,Object,Take Example
+Task2,Point specifically,Position,Express Idea
+Task2,Draw,Position,Express Idea
+Task2,Point specifically,Position,Reflection
+Task2,Draw,Position,Coordinate with Action
+Task2,Draw,Object,Coordinate with Action
+Task2,Draw,Scale,Coordinate with Action
+Task2,Point specifically,Object,Express Idea
+Task2,Point specifically,Position,Express Idea
+Task2,Point specifically,Position,Seek Confirmation
+Task2,Point generally,Position,Coordinate with Action
+Task2,Draw,Event,Reflection
+Task2,Point specifically,Position,Seek Confirmation
+Task2,Point specifically,Position,Seek Confirmation
+Task2,Point specifically,Position,Reflection
+Task2,Draw,Position,Coordinate with Action
+Task2,Point specifically,Position,Reflection
+Task2,Point specifically,Position,Seek Confirmation
+Task2,Draw,Object,Reflection
+Task3,Point generally,Object,Express Idea
+Task3,Point specifically,Object,Express Idea
+Task1,Observe,Event,Express Idea
+Task1,Observe,Object,Express Idea
+Task1,Observe,Event,Reflection
+Task1,Observe,Object,Express Idea
+Task1,Observe,Object,Express Idea
+Task1,Observe,Object,Express Idea
+Task1,Move,Position,Express Idea
+Task1,Move,Object,Express Idea
+Task1,Move,Object,Express Idea
+Task1,Observe,Object,Express Idea
+Task1,Move,Position,Express Idea
+Task2,Observe,Position,Express Idea
+Task2,Draw,Position,Seek Confirmation
+Task2,Move,Object,Coordinate with Action
+Task3,Observe,Event,Express Idea
+Task3,Observe,Object,Reflection
+Task3,Input data,Object,Express Idea
+Task3,Observe,Time,Seek Confirmation
+Task3,Input data,Time,Coordinate with Action
+Task3,Observe,Time,Coordinate with Action
+Task3,Observe,Object,Express Idea
+Task3,Observe,Object,Seek Confirmation
+Task3,Draw,Event,Reflection
+Task3,Observe,Event,Coordinate with Action
+Task3,Observe,Object,Reflection
