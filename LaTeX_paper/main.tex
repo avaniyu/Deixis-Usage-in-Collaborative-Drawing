@@ -1,0 +1,376 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% template for II2202 report
+%% original 2015.11.24
+%% revised  2016.08.23
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+\title{Designing Deixis Usage in Real-time Collaborative Drawing}
+\author{
+        \textsc{Jiayao Yu}
+            \qquad
+        \textsc{Yumin Hong}
+        \mbox{}\\
+        \normalsize
+            \texttt{jiayaoy}
+        \textbar{}
+            \texttt{yumin}
+        \normalsize
+            \texttt{@kth.se}
+}
+\date{\today}
+
+\documentclass[12pt,twoside]{article}
+
+\usepackage[paper=a4paper,dvips,top=1.5cm,left=1.5cm,right=1.5cm,
+    foot=1cm,bottom=1.5cm]{geometry}
+\usepackage{booktabs}
+
+%\usepackage[T1]{fontenc}
+%%\usepackage{pslatex}
+\renewcommand{\rmdefault}{ptm} 
+\usepackage{mathptmx}
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+%
+\usepackage{bookmark}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+%%----------------------------------------------------------------------------
+%%   pcap2tex stuff
+%%----------------------------------------------------------------------------
+ \usepackage[dvipsnames*,svgnames]{xcolor} %% For extended colors
+ \usepackage{tikz}
+ \usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,fit,positioning,calc,shapes}
+
+%% \usepackage{pgfmath}	% --math engine
+%%----------------------------------------------------------------------------
+%% \usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc} % inputenc allows the user to input accented characters directly from the keyboard
+\usepackage[swedish,english]{babel}
+%% \usepackage{rotating}		 %% For text rotating
+\usepackage{array}			 %% For table wrapping
+\usepackage{graphicx}	                 %% Support for images
+\usepackage{float}			 %% Suppor for more flexible floating box positioning
+\usepackage{color}                       %% Support for colour 
+\usepackage{mdwlist}
+%% \usepackage{setspace}                 %% For fine-grained control over line spacing
+%% \usepackage{listings}		 %% For source code listing
+%% \usepackage{bytefield}                %% For packet drawings
+\usepackage{tabularx}		         %% For simple table stretching
+%%\usepackage{multirow}	                 %% Support for multirow colums in tables
+\usepackage{dcolumn}	                 %% Support for decimal point alignment in tables
+\usepackage{url}	                 %% Support for breaking URLs
+\usepackage[perpage,para,symbol]{footmisc} %% use symbols to ``number'' footnotes and reset which symbol is used first on each page
+
+%% \usepackage{pygmentize}           %% required to use minted -- see python-pygments - Pygments is a Syntax Highlighting Package written in Python
+%% \usepackage{minted}		     %% For source code highlighting
+
+%% \usepackage{hyperref}		
+\usepackage[all]{hypcap}	 %% Prevents an issue related to hyperref and caption linking
+%% setup hyperref to use the darkblue color on links
+%% \hypersetup{colorlinks,breaklinks,
+%%             linkcolor=darkblue,urlcolor=darkblue,
+%%             anchorcolor=darkblue,citecolor=darkblue}
+
+%% Some definitions of used colors
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3} %% define a color called darkblue
+\definecolor{darkred}{rgb}{0.4,0.0,0.0}
+\definecolor{red}{rgb}{0.7,0.0,0.0}
+\definecolor{lightgrey}{rgb}{0.8,0.8,0.8} 
+\definecolor{grey}{rgb}{0.6,0.6,0.6}
+\definecolor{darkgrey}{rgb}{0.4,0.4,0.4}
+%% Reduce hyphenation as much as possible
+\hyphenpenalty=15000 
+\tolerance=1000
+
+%% useful redefinitions to use with tables
+\newcommand{\rr}{\raggedright} %% raggedright command redefinition
+\newcommand{\rl}{\raggedleft} %% raggedleft command redefinition
+\newcommand{\tn}{\tabularnewline} %% tabularnewline command redefinition
+
+%% definition of new command for bytefield package
+\newcommand{\colorbitbox}[3]{%
+	\rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
+	\bitbox{#2}{#3}}
+
+%% command to ease switching to red color text
+\newcommand{\red}{\color{red}}
+%%redefinition of paragraph command to insert a breakline after it
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+%%redefinition of subparagraph command to insert a breakline after it
+\makeatletter
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\setcounter{tocdepth}{3}	%% 3 depth levels in TOC
+\setcounter{secnumdepth}{5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% End of preamble
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\headrulewidth}{0pt}
+\lhead{II2202, Fall 2017, Period 1-2}
+%% or \lhead{II2202, Fall 2016, Period 1}
+\chead{Final project report}
+\rhead{\date{\today}}
+
+\makeatletter
+\let\ps@plain\ps@fancy 
+\makeatother
+
+\setlength{\headheight}{15pt}
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+\label{sec:abstract}
+
+Humans are used to using deixis in face-to-face collaborations during the evolution over thousands of years, to facilitate communication by shortening and simplifying dialogue. However, in geographically separated Computer-Supported Collaborative Work (CSCW), it is awkward to use deixis due to lack of contextual information. In this paper, we focused on real-time collaborative drawing, analyzed deixis usage in face-to-face collaboration and CSCW respectively based on our field experiment and exploratory data analysis. In the end we proposed some interaction patterns to optimize deixis usage in real-time collaborative drawing, with scalability to general CSCW groupware interaction designs. 
+\\
+\\
+\textbf{Keywords}: deixis; collaborative drawing; CSCW; interaction design.
+
+\end{abstract}
+
+%%\clearpage
+
+\selectlanguage{english}
+\tableofcontents
+
+% \section*{List of Acronyms and Abbreviations}
+% \label{list-of-acronyms-and-abbreviations}
+
+% This document requires readers to be familiar with terms and concepts described in \mbox{RFC~1235} \cite{john_ioannidis_coherent_1991}. For clarity we summarize some of these terms and give a short description of them before presenting them in next sections.
+
+% \begin{basedescript}{\desclabelstyle{\pushlabel}\desclabelwidth{10em}}
+% \item[IPv4]					Internet Protocol version 4 (RFC~791 \cite{postel_internet_1981})
+% \item[IPv6]					Internet Protocol version 6 (RFC~2460 \cite{deering_internet_1998})
+% \end{basedescript}
+
+
+\clearpage
+\section{Introduction}
+\label{sect:introduction}
+%% Longer problem statement
+%% General introduction to the area
+
+% It was conjectured in \cite{john_ioannidis_coherent_1991} that multicasting
+% could provide gains by \ldots.
+
+% See also \cite{a_new_synchronization_protocol_for_sqlite_databases},
+% the paper \cite{anand_kannan_n-ary_2012}, 
+% and the book \cite{brent_s._baxter_standard_1982}.
+
+In natural face-to-face collaborations, collaborators mutually perceive information not only from explicit resulting expressions on shared media, such as writing and drawing on paper, but also from implicit accompanying indications through the collaboration process, such as facial expressions and hand gestures. To be more specific, those implicit accompanying indications are categorizes as deictic words, demonstration action, and manifesting actions \cite{gutwin2002descriptive}. When collaborators refer to an object on their shared media, they often use deixis to indicate their reference. It is widely used in face-to-face collaborations, while its semantic meaning is strongly dependent on situated context, which are often missing in Computer-Supported Collaborative Work (CSCW). Proper deixis usage in CSCW can help collaborators gain contextual information and facilitate their mutual communications. However, there were insufficient interaction designs for CSCW shared media groupwares to empower collaborators to use deixis as freely as face-to-face collaborations. Though there were different research frameworks on deixis usage, we still can sense the gap between theoretical research and industrial practices, especially for real-time collaborative drawing groupware designs.
+
+(placeholder: One more paragraph here summarizing our achieved contributions.)
+
+\subsection{Literature study}
+\label{sect:literature}
+\subsubsection{Deixis}
+A deixis (or deictic expression) is a word or phrase (such as this, that, these, those, now, then) that points to the time, place, or situation in which a speaker is speaking.  The term deixis is defined by many scholars. Hurford and Heasley states a deictic word is one which takes some element of its meaning from the situation of the utterance in which it is uttered \cite{hurford1983coursebook}, while Hanks claims it specifies the identity or placement in space or time of individuated objects relative to the participants in a verbal interaction \cite{hanks1990referential}. Fillmore \cite{fillmore1997lectures} describes this utterance situation, which includes space and time information,  as grounding in a social context. In Jaszczolt view, deixis is the phenomenon encoding contextual information by means of lexical items or grammatical distinctions that provide this information \cite{jaszczolt2005default}, and Clark and Tomasello claims that this particular word and accompanying pointing gesture are part of a system of communication for establishing joint attention and shared intentions \cite{clark2003pointing}\cite{tomasello2007shared}.
+
+There are still several classifications of deixis among scholars. Brugmann comes up with the concept of deictic field, then it is developed into person deictic field, space deictic field and time deictic field by other scholars. Bühler classifies deixis to objective deixis, imaginative deixis and anaphoric deixis, according to the degree of abstractness, while Fillmore classifies deixis by distinguishing its three usages: gestural usage, symbolic usage and anaphoric usage. The most being accepted classification is claimed by Levinson, who divides it into person deixis, time deixis, place deixis, discourse deixis, and social deixis.
+
+Deixis can be used in orienting addressee’s attention by situating, displacing and directing someone’s point of view. The addressee starts an orientation procedure when the speaker uses a deictic expression. Rodney and Geoffrey states the term deixis applies to the use of expressions in which the meaning can be traced directly to features of the act of utterance--when and where it takes place, and who is involved as speaker and as addressee \cite{huddleston2006coordination}. For Fillmore’s statement, deixis has deictic usage, and it includes symbolic usage and gesture usage \cite{fillmore1997lectures}. In this paper, we focus more on the gesture usage, which are fully interpreted only if the speaker makes use of certain paralinguistic features such as a pointing or head moving, and the addressee is able to perceive and monitor certain aspect of the communication act. Pointing is a composite part of deixis appearing. As recent research on gestures by 14 months old children has shown, pointing is a pre-linguistic activity with a lexical status: pointing-gestures are object-referring terms used by very young children as substitutes for words they have not yet acquired in their vocabulary \cite{goldin2007young}.\\
+
+\subsubsection{Computer-Supported Collaborative Work}
+
+The term computer-supported cooperative work (CSCW) was first coined by Irene Greif and Paul M. Cashman. According to Carstensen and Schmidt,CSCW addresses "how collaborative activities and their coordination can be supported by means of computer systems" \cite{carstensen1999computer}.  CSCW combines the understanding of the way people work in groups with the enabling technologies of computer networking, and associated hardware, software, services and techniques.
+
+There are different kinds workspace in CSCW. In this paper, the design field is related to shared whiteboards. Shared whiteboards are simply multi-user graphics editors. In general, all users can draw, type, or telepoint simultaneously on the same virtual whiteboard, can import images from other applications, and can store images generated in advance for a “group slide show.” These objects often serve as conversational props \cite{brinck1992collaborative}. The analogy with a physical whiteboard is even more obvious in products such as Smart 2000 \cite{martin1995smart}, which include display screens the size of wall-mounted whiteboards. Input devices include cordless pens and touch sensitive screens. Tivoli, for small working meeting, the editor included with the LiveBoard, allows independent manipulation of graphic objects, a capability that most current products do not support \cite{moran1995some}. Elin Rønby has pointed out some key design issues of shared whiteboards, such atomic objects, generalized Wiping and gestures \cite{pedersen1993tivoli}. 
+
+The difficulty in CSCW design is how to support collaborator understand each other. Taura T and Yamagishi A propose a method for supporting collaborative product design using a computer system where the designers are distributed and communicate with each other asynchronously. These methods aim to help designer to understand others’ intention or reason of design \cite{taura1997collaboration}.  Creating more context information that can be perceived by collaborators is a direction of optimising CSCW groupware. In the view of Xueguang, awareness in collaborative environment is one of the main topics in CSCW research. This topic emphasises information and operation by all participants could be aware by others \cite{xueguang2004research}. For how to display this awareness information, Lei S and Baomin X states basic principles of group awareness: when someone does operation, collaborators can notice his action and operation result, they can hear his voice, and they can see his mouth, eyes and facial expression \cite{lei2002human}. 
+
+Many scholars do CSCW design in different methods. Ishii Hiroshi designs based on people natural skills used in collaboration, and then introduces the progression of iterative media design, focusing on real-time collaboration by distributed collaborators \cite{ishii1992clearboard}\cite{ishii1993integration}\cite{ishii1994iterative}. In this project, their iterative design method begins with skills and behaviours people used in daily collaboration, which they believe will lead to "cognitive seamless", and this “cognitive seamless” results in good user experience. After user testing, evaluation and analysis, several designs have been prototyped iteratively finally. John C. Tang and Scott L. Minneman paid attentions to simulate natural media space \cite{tang1991videodraw}. They prototyped VideoDraw to superimpose remote drawing activities including resulting drawings and accompanying hand gestures over local display screen using video cameras, and admitted its limitations hardware-wise such as parallax and not-editable drawing marks.  
+
+
+\subsubsection{Workspace Awareness}
+‘Awareness’ in collaborations refers to knowledge or perception of  the context where collaborators carry out joint works \cite{gellersen2002multi}. Natural face-to-face collaborations inherently equip collaborators with such awarenesses, thus a person is able to pick up what the other collaborators are doing, and to adjust his or her own actions accordingly \cite{gutwin2002descriptive}. This kind of awareness is from common ground \cite{clark1996using}, a shared background of understanding. In face-to-face interaction, collaborators continually test for evidence of common ground to maintain awareness. There are variety of situational elements contribute to common ground while these resources will be disruption in separated CSCW \cite{tang1991findings}, which makes design challenges in CSCW interface. 
+
+The significance of awareness towards collaboration quality makes many researchers devote their efforts on the missing awarenesses in geographically separated CSCW. John C. Tang crystallized his observations from videotaped field studies on collaborative drawing activity \cite{tang1991findings}, documented creating and drawing process convey rich information not contained in resulting drawings, and fluent mix of activities in the drawing space, they also proposed an analysis framework to decode drawing collaboration.
+
+Gutwin C. integrated previous research about awareness in real-time shared workspace collaboration and then established a workspace awareness framework to improve groupware design, discussing on workspace awareness from aspect of simplification of communication \cite{gutwin2002descriptive}. Tuddenham P. described several interaction design implications in remote and mix-presence tabletop collaboration to support natural tabletop awareness mechanisms of territoriality, orientation and consequential communication \cite{robinson2007distributed}.
+Carroll J and Neale D follow the method of breakdown analysis, to investigate the role of notification systems in collaborative awareness \cite{carroll2003notification}. They find the notification tools don’t effectively support awareness in collaboration, and based on what they analyse, they explore how notification systems can be designed to improve supporting in collaboration awareness.
+
+
+\subsection{Research questions, hypotheses}
+\label{sect:questions}
+
+Our overall research aims to find out where and why are the differences of deixis usage happening in face-to-face collaboration and CSCW two setups, then to know via interaction design how to address the deficiency in CSCW caused by differences with the counterparts in face-to-face collaboration. We assumed collaborators have different needs to use deixis in two setups in terms of expression purpose and significance, and they have different ways to use deixis in two setups even for the same expression purpose. Based on that, we scoped our research questions as 1) how are the differences on the needs of deixis usage in face-to-face collaboration and CSCW, in terms of expression purpose and significance, 2) how do collaborators express deixis distinctly in two setups, and 3) how are the current groupware designs that support deixis usage in CSCW and what could be improved. 
+
+
+\section{Methods}
+\label{sec:method}
+
+\subsection{Collaborative drawing field experiment}
+\label{sect:collaborative}
+To investigate where and why the differences happen in face-to-face collaboration and CSCW this two setups, we started off a user study in field experiment manner to yield ecologically valid results. In a nutshell, we setup realistic test stage to simulate collaborative drawing environment in creative work settings, sampled a pair of test subjects from targeted user group, signed consent forms with them to allow us to video-record and publish our research results, instructed test subjects tasks one by one, assisted them to perform tasks only if they requested so, interviewed them right after the field experiment, then instantly analysed data using affinity diagram, later encoded field experiment data from videos, and statistical modelled in the end.
+
+\subsubsection{User tasks design}
+
+Since we aimed to research on the differences caused by collaborative drawing task platforms, we set this - face-to-face collaboration or CSCW - as the only controlled variable throughout our field experiment. 
+
+We designed two sets of three-task for face-to-face collaboration and CSCW settings respectively, two sets have equivalent task designs but with different description and requirement. The three tasks in each set are puzzles, room layout design and storyboard design based on room layout design. We wanted to encourage collaboration and researched in creative work setting, so we chose the tasks that support collaborative interactions as much as possible and afford big design spaces for creativity. Detailed description on tasks is in appendix\ref{appdx:user tasks}. 
+
+\subsubsection{Test subject sampling}
+
+To understand the rationale behind collaboration behaviours, we chose in-depth video-recording analysis after the field experiment, but because of its characteristic time-consumption, we only invited a pair of test subjects. Through the one-hour field experiment, we still got considerable amount of video materials for our analysis.
+
+This two test subjects both are male with proficiency in ICT devices usage, they did not know each other before, thus they had to use clear deixis expression without any prior tacit agreement. To research across experienced designer and novice designer, only one of our test subjects has design experience, whilst the other one doesn't have. 
+
+\subsubsection{Test stage setup}
+
+The field experiment were conducted in two groupwork rooms in KTH Kista to minimize environmental interference. We experimented face-to-face collaboration session first, then had our test subjects take a 15-minute break and come back to CSCW session, so that they could familiarize with our test first with their natural face-to-face collaboration setting while utilising their full set of deixis expression, then went to CSCW setting with rested fresh minds.
+
+In face-to-face collaboration session, test subjects puzzled and drew using papers and pens on the same desk shoulder-by-shoulder; in CSCW session, they were in two different rooms connected by a video call, and individually drew on iPad touch screens using RealTime Board app.
+
+\subsection{Data encoding framework}
+\label{sect:framework}
+As we intended to abstract from the field experiment why do collaborators need to use deixis and how do they use with regard to their needs, we encoded our video data into three dimensions - action mode, deixis reference and deixis role. Action mode is the categorization directly encoded from deixis usage behaviours of collaborators. Deixis reference is the categorization interpreted from action mode and contextual information, it explains the targeted content expressed by associated deixis. Deixis role is the categorization interpreted from pure contextual information, it discovers the conceptual purpose indicated by associated deixis. Table \ref{tab:tableFramework} is an overview of this encoding framework. We encoded a tuple of action mode, deixis reference and deixis role per instance of deixis usage behaviour.
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{l l l}
+    % \toprule
+    {\small\textit{Dimension}}
+    & {\small \textit{Categorization}}
+    & {\small \textit{Explanation}} \\
+    \midrule
+    Action mode & observe & watch behaviours of collaborators or drawing interface \\
+       & select & select an object on drawing interface \\
+     & move & move or rotate an object on drawing interface \\
+     & draw & scribble or sketch\\
+     & input data & input text \\
+     & point specifically & point and specify an object or position \\
+     & point generally & point generally withour specification on object or position\\
+     & describe using gestures & describe using hand or body gestures\\     
+     \midrule
+    Deixis reference & object & a puzzle piece, operatable element, or tool on interface\\
+     & scale & including scale and distance \\
+      & position & including position, orientation, and direction \\
+      &event & event of status change in coordination or collaboration\\
+      &time & time of doing an action or change a status\\
+      \midrule
+    Deixis role & express an idea & express ideas on their own behaviours \\
+    & coordinate with actions & coordinate behaviours of their collaborators\\
+    & seek confirmation & seek confirmation from collaborators\\
+    & reflection & reflect, comment and question behaviours and current results\\
+    & take an example & exemplify to facilitate communication\\
+    % \bottomrule
+  \end{tabular}
+  \caption{Data encoding framework}~\label{tab:tableFramework}
+\end{table}
+
+\subsection{Groupware interaction design}
+\label{sect:groupware}
+Field experiment helped us find improvement possibilities for collaborative drawing groupware interaction design, then on top of it we formulated goals and design space.
+
+We followed double-diamond approach throughout our interaction design. In the first phase, we brainstormed all possible solutions as diverse as possible while quantity matters over quality. Then we examined those initial ideas and picked the best among them as design candidates bringing to next phase. In the second phase, we further derived and developed these design candidates, then converged again to generate the final best designs.
+
+\section{Results and Analysis}
+\label{sec:results}
+\subsection{Field experiment video data statistics}
+\label{sec:statistics}
+We encoded 81 deixis usage behaviour instances in total from our field experiment, with 56 instances from face-to-face condition, and 35 instances from CSCW condition. Then we analysed occurrence distribution of action mode, deixis reference and deixis role for each task, see in figure \ref{fig:yumin}, and occurence distribution of action mode in each deixis reference, see in figure \ref{fig:jiayao}, we compared those statistics in CSCW condition with face-to-face condition, and got the following analysis results.
+
+\begin{figure}
+\minipage{0.375\textwidth}
+  \includegraphics[width=\linewidth]{img/action_mode_a.png}
+  \includegraphics[width=\linewidth]{img/action_mode_b.png}
+\endminipage\hfill
+\minipage{0.27\textwidth}
+  \includegraphics[width=\linewidth]{img/deixis_reference_a.png}
+  \includegraphics[width=\linewidth]{img/deixis_reference_b.png}
+\endminipage\hfill
+\minipage{0.265\textwidth}%
+  \includegraphics[width=\linewidth]{img/deixis_role_a.png}
+  \includegraphics[width=\linewidth]{img/deixis_role_b.png}
+\endminipage
+\caption{From left to right: occurrence distribution of action mode, deixis reference and deixis role.}\label{fig:yumin}
+\end{figure}
+
+\begin{figure}
+\minipage{0.47\textwidth}
+  \includegraphics[width=\linewidth]{img/Object.png}
+  \includegraphics[width=\linewidth]{img/Position.png}
+  \includegraphics[width=\linewidth]{img/Time.png}
+\endminipage\hfill
+\minipage{0.47\textwidth}
+  \includegraphics[width=\linewidth]{img/Scale.png}
+  \includegraphics[width=\linewidth]{img/Event.png}
+  \vspace{3.7cm}
+\endminipage\hfill
+\caption{Occurrence distribution of action modes in each deixis reference (placeholder: all plots display which deixis reference)}\label{fig:jiayao}
+\end{figure}
+
+\subsubsection{Observing played an important role in CSCW}
+Deixis were used 37.5\% less in CSCW condition than face-to-face condition, with 42.1\% less in task 1 (puzzle), and 91.4\% less in task 2 (room layout design), whilst in task 3 (storyboard design) deixis were used more often in CSCW due to more observing as deixis behaviours. As task 3 was strongly dependent on task 2, designing a storyboard based on room layout, we assume two collaborators achieved some agreement from their collaborations during task 2, so that they didn't need too much deixis to communicate and coordinate, and instead they can collaborate using certain tacit agreement during task 3. From the left chart in figure \ref{fig:yumin} we also found observing action mode pop out. It was the most frequently used action mode in CSCW condition across all tasks, especially in task 3. We went back to transcribed action and saying in the video, found that when collaborators were operating on the same object in CSCW condition, they tended to observe to understand intention and action of collaborator, to avoid conflicts and coordinate collaboration, like saying ``is it finished?" ``you did it very clearly".
+
+\subsubsection{Position, object and scale were the most needed deixis reference}
+
+From the middle chart in figure \ref{fig:yumin} we can see position, object and scale are the most frequently happened deixis references both in face-to-face and CSCW conditions. In task 1, when collaborators were operating on predefined puzzle pieces, they more frequently used deixis referring to objects. In task 2, when collaborators were drawing room layout from scratch, their started to express scales and positions by deixis, especially to express positions, which took up 68.6\% among all five deixis references under face-to-face condition. By contrast, collaborators used deixis refer to positions much less in CSCW conditions, as there were 24 such instances in face-to-face condition, but only 2 such instances in CSCW condition. It was a significant finding that the most used deixis behaviour in face-to-face condition had pretty limited instances in CSCW condition.
+
+\subsubsection{No pointing was used in CSCW}
+As shown in the left chart in figure \ref{fig:yumin}, pointing specifically and generally were frequently appeared action modes in face-to-face condition, taking up 20.8\% among all eight action modes, while 80\% of the pointings happened in task 2. However, there were no pointing used at all in CSCW condition. It could because of the CSCW platform we used - RealTime Board app on two iPads, since pointing to an element on its drawing interface on one end would not result to any visible indication on another end, namely collaborators can not use pointing to convey information in CSCW condition with our experimented platform. In terms of pointing per se, 80\% of the pointing are pointing specifically, like ``let's place the door in this corner", rather than pointing generally, like ``can the bed orient here'' with pointing to one side of drawing paper. From the left top and middle charts in figure \ref{fig:jiayao}, we found that pointing were used to refer to object and position, especially pointing specifically to express position, account for 84\% of all the pointings. 
+
+\subsubsection{Deixis refer to event and time are more often in CSCW}
+
+
+\subsubsection{Expressing an idea is the most needed deixis conceptual purpose}
+
+\section{Discussion}
+\label{sec:discussion}
+
+\bibliography{II2202-report}
+%%\bibliographystyle{IEEEtran}
+\bibliographystyle{myIEEEtran}
+\appendix
+\section{Field experiment user tasks}
+\label{appdx:user tasks}
+
+We designed two task-sets for face-to-face collaboration and CSCW setups respectively, each task-set consists of three tasks, corresponding tasks in two setups have equivalent content but with different descriptions and requirements. Detailed instructions given to test subjects are the follows.
+
+Task 1, \textit{puzzle}.
+
+(Instructions were the same for both face-to-face collaboration and CSCW.) In this task, please collaborate with your partner, finish this 9-piece puzzle in five minutes.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.2]{img/user_task_puzzle1.jpg}\hspace{1cm}
+\includegraphics[scale=0.2]{img/user_task_puzzle2.jpg}
+\caption{left is for face-to-face collaboration; right is for CSCW}
+\end{figure}
+
+Task 2, \textit{layout design}.
+
+Ming is a prospective 25-year-old male master student, he is moving to his new accommodation and need to layout his corridor room with the following staff. Please design his bedroom layout with your partner in the given rectangular space.
+
+Cai is a 30-year-old lady, she is moving to her new place due to work transition and would only stay here for half a year. Please design her bedroom layout with your partner in the given rectangular space.
+
+\begin{figure}
+\centering
+\includegraphics[scale=1]{img/user_task2_f2f.PNG}\\
+\includegraphics[scale=1]{img/user_task2_CSCW.PNG}
+\caption{Up is for face-to-face collaboration; down is for CSCW}
+\end{figure}
+
+Task 3, \textit{storyboard design based on previous room layout}.
+
+Please tell a story describing how Ming does in his bedroom in the evening of an average day using the given nine-rectangle space.
+
+Please tell a story describing how Cai does in her bedroom in the morning of an average day using the given nine-rectangle space.
+\end{document}
