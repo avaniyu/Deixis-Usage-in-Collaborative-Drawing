@@ -1,2 +1,4 @@
 # Deixis-Usage-in-Collaborative-Drawing
-II2202 Research Methodology and Scientific Writin
+Research Methodology and Scientific Writing
+* Statistically exploratory data analysis using python and matplotlib
+* Scientific paper writing in LaTeX
